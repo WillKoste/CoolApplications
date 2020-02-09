@@ -1,4 +1,4 @@
-const msg = document.querySelector('#msg');
+const msgEl = document.querySelector('#msg');
 
 const randomNum = getRandomNumber();
 
@@ -11,7 +11,16 @@ let recognition = new window.SpeechRecognition();
 recognition.start();
 
 function onSpeak(e){
-  console.log(e.value);
+  const msg = e.results[0][0].transcript;
+
+  writeMessage(msg);
+  // checkNumber(msg);
+}
+
+function writeMessage(){
+  msgEl.innerText = `
+    ${msg}
+  `;
 }
 
 function getRandomNumber(){
